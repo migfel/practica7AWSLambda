@@ -1,0 +1,20 @@
+
+'use strict'
+var days =['Domingo', 'Lunes', 'Martes', 'Miercoles', 'Jueves','Viernes','Sabado'];
+var times = ['mañana', 'tarde','Noche','noche', 'Dia'];
+console.log ('cargando funcion');
+exports.handler = function  ( event, context, callback) {
+	
+
+let name= event.name == undefined ? 'Tu' : event.name;
+let city= event.city == undefined ? 'world' : event.city;
+let time= times.indexOf(event.time) < 0 ? 'dia' : event.time;
+let dia= days.indexOf(event.day) < 0 ? null : event.day;
+
+let greeting= 'Bonita ' +time + ' , ' +name + ' de  la Ciudad:' + city + '.';
+if (dia)greeting += ' Feliz ' + dia +'!';
+console.log ('Hola :', greeting);
+callback(null, {
+"Saludos!":greeting
+});
+};
